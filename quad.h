@@ -43,7 +43,7 @@ typedef struct ForceInput {
 
 void insert(p_qtree ** node, particle_t p);
 
-force_t* getForce(p_qtree ** node, particle_t p, double thetamax, double G, double epsilon);
+void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double epsilon, force_t* force);
 
 void delete(p_qtree ** node);
 
