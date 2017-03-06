@@ -17,7 +17,7 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 	//printf("1. print force x value %f", (*force).x);
 	//printf("print force y value %f\n", (*force).y);
 	
-	if ((**node).nw==NULL && p.x_pos!=(**node).massCenterX && p.y_pos!=(**node).massCenterY) {
+	if ((**node).nw==NULL && p.x_pos!=(**node).massCenterX) {
 		
 			
 		//printf("2. print force x value %f", (*force).x);
@@ -109,7 +109,7 @@ void * thread_func(void* arg) {
 		(*force).y = 0;
 	     
 	}
-	 free(force);
+	 //free(force);
 	return NULL;
 }
 
