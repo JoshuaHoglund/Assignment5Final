@@ -71,17 +71,20 @@ void * thread_func(void* arg) {
 	double delta_t = (*forceInput).delta_t;	
 	particle_t * particles = (*forceInput).particles;
 	
+	
+	force_t * force = (force_t*)calloc(1,sizeof(force_t));
 	for(int i=interval*(id+1);i<iterations;i++) {
-	      force_t * force = (force_t*)calloc(1,sizeof(force_t));
-	      getForce(&head, particles[i],theta_max,G,epsilon);
+	      getForce(&head, particles[i],theta_max,G,epsilon, force);
 	      double m_i = 1/particles[i].mass;
 	      particles[i].vel_x += delta_t*(*force).x*m_i;
 	      particles[i].vel_y += delta_t*(*force).y*m_i;
 	      particles[i].x_pos += delta_t*particles[i].vel_x;
-	      particles[i].y_pos += delta_t*particles[i].vel_y;  
-	      free(force);
+	      particles[i].y_pos += delta_t*particles[i].vel_y; 
+		(*force).x = 0;
+		(*force).y = 0;
+	     
 	}
-	
+	 free(force);
 	return NULL;
 }
 
