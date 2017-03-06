@@ -137,8 +137,8 @@ pthread_t threads[num_threads-1];
 	for(int i=0;i<interval;i++){
 	      
 	      getForce(&head, particles[i],theta_max,G,epsilon, force);
-		//printf("final force_x: %lf \n",(*force).x);
-		 // printf("final force_y: %lf \n",(*force).y);
+		printf("final force_x: %lf \n",(*force).x);
+		 printf("final force_y: %lf \n",(*force).y);
 	      double m_i = 1/particles[i].mass;
 	      particles[i].vel_x += delta_t*(*force).x*m_i;
 	      particles[i].vel_y += delta_t*(*force).y*m_i;
