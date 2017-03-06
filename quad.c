@@ -36,8 +36,8 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 	else if (theta>thetamax && p.x_pos!=(**node).massCenterX) {
 		
 		getForce((&(**node).nw),p, thetamax, G, eps, force);
-		printf("%f/n", (*force).x);
-		printf("%f/n", (*force).y);
+		printf("print force x value %f", (*force).x);
+		printf("print force y value %f\n", (*force).y);
 		getForce((&(**node).ne),p, thetamax, G, eps, force);
 		getForce((&(**node).sw),p, thetamax, G, eps, force);
 		getForce((&(**node).se),p, thetamax, G, eps, force);
