@@ -116,11 +116,10 @@ pthread_t threads[num_threads-1];
 	      
  
 	      int interval = N/num_threads;
-	      printf("interval size  %d", interval);
 	      int remainder = N%num_threads;
-	      printf("remainder siye %d", remainder);
+	     
 	      
-	      for (int th=0;th<num_threads-1;th++) {
+	      for (int th=0;th<(num_threads-1);th++) {
 		      forceInput_t * forceInput = (forceInput_t*) malloc(sizeof(forceInput_t));
 		      (*forceInput).head = head;
 		      (*forceInput).particles = particles;
