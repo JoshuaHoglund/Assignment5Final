@@ -226,19 +226,25 @@ pthread_t threads[num_threads-1];
            
 
            
-   for(int i=0;i<N;i++){
-      force_t * force = (force_t*)calloc(1,sizeof(force_t));
-      getForce(&head, particles[i],theta_max,G,epsilon, force);    
-      // printf("getForce worked\n"); 
-      //printf("outside force_x: %lf \n",(*force).x);
-      //printf("outside force_y: %lf \n",(*force).y);
-      double m_i = 1/particles[i].mass;
-      particles[i].vel_x += delta_t*(*force).x*m_i;
-      particles[i].vel_y += delta_t*(*force).y*m_i;
-      particles[i].x_pos += delta_t*particles[i].vel_x;
-      particles[i].y_pos += delta_t*particles[i].vel_y;  
-      free(force);
-   }
+	      
+	force_t * force = (force_t*)calloc(1,sizeof(force_t));
+	for(int i=0;i<interval;i++){
+	      
+	      getForce(&head, particles[i],theta_max,G,epsilon, force);
+		
+	      double m_i = 1/particles[i].mass;
+	      particles[i].vel_x += delta_t*(*force).x*m_i;
+	      particles[i].vel_y += delta_t*(*force).y*m_i;
+		printf("force x %lf",(*force).x);
+		//printf("velo: %lf",particles[i].vel_x);
+		// printf("velo_y: %lf \n",particles[i].vel_y);
+	      particles[i].x_pos += delta_t*particles[i].vel_x;
+	      particles[i].y_pos += delta_t*particles[i].vel_y; 
+		//	printf("part pos %lf ",particles[i].x_pos);
+		// printf("part pos_y: %lf \n",particles[i].y_pos);
+		(*force).x = 0;
+		(*force).y = 0;
+	   }
            
    
    delete(&head);
