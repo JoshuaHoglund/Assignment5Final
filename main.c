@@ -130,29 +130,35 @@ pthread_t threads[num_threads-1];
 		      (*forceInput).delta_t = delta_t;
 		      pthread_create(&threads[th],NULL, thread_func,(void*) forceInput);
 	      }
+	
 	      
+	force_t * force = (force_t*)calloc(1,sizeof(force_t));
 	for(int i=0;i<interval;i++){
-	      force_t * force = (force_t*)calloc(1,sizeof(force_t));
-	      force = getForce(&head, particles[i],theta_max,G,epsilon);
+	      
+	      getForce(&head, particles[i],theta_max,G,epsilon, force);
 	      double m_i = 1/particles[i].mass;
 	      particles[i].vel_x += delta_t*(*force).x*m_i;
 	      particles[i].vel_y += delta_t*(*force).y*m_i;
 	      particles[i].x_pos += delta_t*particles[i].vel_x;
-	      particles[i].y_pos += delta_t*particles[i].vel_y;  
-	      free(force);
+	      particles[i].y_pos += delta_t*particles[i].vel_y; 
+		(*force).x = 0;
+		(*force).y = 0;
 	   }
 	   
+	      
 	for(int i=N-remainder;i<N;i++) {
-	      force_t * force = (force_t*)calloc(1,sizeof(force_t));
-	      force = getForce(&head, particles[i],theta_max,G,epsilon);
+	      
+	      getForce(&head, particles[i],theta_max,G,epsilon, force);
 	      double m_i = 1/particles[i].mass;
 	      particles[i].vel_x += delta_t*(*force).x*m_i;
 	      particles[i].vel_y += delta_t*(*force).y*m_i;
 	      particles[i].x_pos += delta_t*particles[i].vel_x;
-	      particles[i].y_pos += delta_t*particles[i].vel_y;  
-	      free(force);
+	      particles[i].y_pos += delta_t*particles[i].vel_y; 
+		(*force).x = 0;
+		(*force).y = 0;
+	  
 	}
-	      
+	free(force); 
 	      for(int th=0;th<num_threads-1;th++) {
 		      pthread_join(threads[th], NULL);
 	      }
