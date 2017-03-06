@@ -226,7 +226,7 @@ pthread_t threads[num_threads-1];
            
 
            
-	      
+	   int interval = N/num_threads;    
 	force_t * force = (force_t*)calloc(1,sizeof(force_t));
 	for(int i=0;i<interval;i++){
 	      
