@@ -109,7 +109,7 @@ void * thread_func(void* arg) {
 		(*force).y = 0;
 	     
 	}
-	 //free(force);
+	 free(force);
 	return NULL;
 }
 
