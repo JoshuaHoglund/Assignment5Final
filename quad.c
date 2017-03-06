@@ -28,7 +28,7 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 			(*force).x = 0;
 			(*force).y = 0;
 		}*/
-		return NULL;
+		
 	}
 	
 	
@@ -40,7 +40,7 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 		getForce((&(**node).sw),p, thetamax, G, eps, force);
 		getForce((&(**node).se),p, thetamax, G, eps, force);
 		
-		return NULL;
+		
 	}
 	
 	else if(p.x_pos!=(**node).massCenterX) {
@@ -51,14 +51,12 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 		double r3=1/((abs_r+eps)*(abs_r+eps)*(abs_r+eps));
 		(*force).x += -G*p.mass*(**node).mass*r_x*r3;
 		(*force).y += -G*p.mass*(**node).mass*r_y*r3;
-		return NULL;
+		
 	}
 	
 	
 	
-	else {
-		return NULL;
-	}
+
 }
 
 void * thread_func(void* arg) {
