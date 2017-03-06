@@ -14,9 +14,15 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 	double theta = (**node).width/dist(p.x_pos, (**node).centerX, p.y_pos, (**node).centerY);
 	//If (**node).nw==NULL all other children are also NULL
 	
+	printf("1. print force x value %f", (*force).x);
+	printf("print force y value %f\n", (*force).y);
 	
 	if ((**node).nw==NULL && p.x_pos!=(**node).massCenterX) {
-		
+		printf(
+			
+		printf("2. print force x value %f", (*force).x);
+		printf("print force y value %f\n", (*force).y);
+			
 		double r_x = p.x_pos - (**node).massCenterX;
 		double r_y = p.y_pos - (**node).massCenterY;
 		
@@ -28,12 +34,18 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 			(*force).x = 0;
 			(*force).y = 0;
 		}*/
+			printf("3. print force x value %f", (*force).x);
+			printf("print force y value %f\n", (*force).y);
+			
 		
 	}
 	
 	
 	
 	else if (theta>thetamax && p.x_pos!=(**node).massCenterX) {
+		
+		printf("4. print force x value %f", (*force).x);
+		printf("print force y value %f\n", (*force).y);
 		
 		getForce((&(**node).nw),p, thetamax, G, eps, force);
 		//printf("print force x value %f", (*force).x);
@@ -42,7 +54,8 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 		getForce((&(**node).sw),p, thetamax, G, eps, force);
 		getForce((&(**node).se),p, thetamax, G, eps, force);
 		
-		printf("print force x value %f", (*force).x);
+		
+		printf("5. print force x value %f", (*force).x);
 		printf("print force y value %f\n", (*force).y);
 		
 		
@@ -50,12 +63,19 @@ void getForce(p_qtree ** node, particle_t p, double thetamax, double G, double e
 	
 	else if(p.x_pos!=(**node).massCenterX) {
 		
+		printf("5. print force x value %f", (*force).x);
+		printf("print force y value %f\n", (*force).y);
+		
 		double r_x = p.x_pos - (**node).massCenterX;
 		double r_y = p.y_pos - (**node).massCenterY;
 		double abs_r = sqrt(r_x*r_x + r_y*r_y);
 		double r3=1/((abs_r+eps)*(abs_r+eps)*(abs_r+eps));
 		(*force).x += -G*p.mass*(**node).mass*r_x*r3;
 		(*force).y += -G*p.mass*(**node).mass*r_y*r3;
+		
+		
+		printf("6. print force x value %f", (*force).x);
+		printf("print force y value %f\n", (*force).y);
 		
 	}
 	
