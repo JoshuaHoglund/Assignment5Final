@@ -221,7 +221,7 @@ pthread_t threads[num_threads-1];
            
    for(int i=0;i<N;i++){
       force_t * force = (force_t*)calloc(1,sizeof(force_t));
-      force = getForce(&head, particles[i],theta_max,G,epsilon);    
+      getForce(&head, particles[i],theta_max,G,epsilon, force);    
       // printf("getForce worked\n"); 
       //printf("outside force_x: %lf \n",(*force).x);
       //printf("outside force_y: %lf \n",(*force).y);
