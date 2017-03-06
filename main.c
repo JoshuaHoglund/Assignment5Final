@@ -236,6 +236,7 @@ pthread_t threads[num_threads-1];
 	      particles[i].vel_x += delta_t*(*force).x*m_i;
 	      particles[i].vel_y += delta_t*(*force).y*m_i;
 		printf("force x %lf\n",(*force).x);
+		printf("force y %lf\n",(*force).y);
 		//printf("velo: %lf",particles[i].vel_x);
 		// printf("velo_y: %lf \n",particles[i].vel_y);
 	      particles[i].x_pos += delta_t*particles[i].vel_x;
