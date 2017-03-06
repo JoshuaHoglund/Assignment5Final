@@ -160,12 +160,12 @@ pthread_t threads[num_threads-1];
 		(*force).y = 0;
 	  
 	}
-	free(force); 
+	
 	      for(int th=0;th<num_threads-1;th++) {
 		      pthread_join(threads[th], NULL);
 	      }
 	      
-        
+        free(force); 
    
    delete(&head);
  //elapsed_time_nsec += (t1.tv_sec-t0.tv_sec)*1e9 + t1.tv_nsec-t0.tv_nsec;
